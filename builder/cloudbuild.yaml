@@ -49,6 +49,7 @@ steps:
     name: 'gcr.io/cloud-builders/gcloud'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_ZONE}'
+      - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
       - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
       - 'KUBECONFIG=/kube/config'
     entrypoint: 'bash'
@@ -57,14 +58,14 @@ steps:
       - |
           CLUSTER=$$(gcloud config get-value container/cluster)
           PROJECT=$$(gcloud config get-value core/project)
-          ZONE=$$(gcloud config get-value compute/zone)
+          REGION=$$(gcloud config get-value compute/region)
           
           [[ "$BRANCH_NAME" ]] && VERSION=${BRANCH_NAME}-${SHORT_SHA}
           [[ "$TAG_NAME" ]] && VERSION=$TAG_NAME
 
           gcloud container clusters get-credentials "$${CLUSTER}" \
             --project "$${PROJECT}" \
-            --zone "$${ZONE}"  
+            --region "$${REGION}"  
 
 
           if [[ "$TAG_NAME" ]] ; then
