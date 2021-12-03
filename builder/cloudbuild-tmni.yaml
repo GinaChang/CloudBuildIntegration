@@ -18,6 +18,9 @@ steps:
 
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Namespace
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
   args:
   - 'get'
   - 'ns'
