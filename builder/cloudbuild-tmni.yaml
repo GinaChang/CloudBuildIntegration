@@ -17,6 +17,12 @@ steps:
     gcloud container clusters get-credentials "$${CLUSTER}" --region "$${REGION}" --project "$${PROJECT}"
 
 - name: 'gcr.io/cloud-builders/kubectl'
+  id: Namespace
+  args:
+  - 'get'
+  - 'ns'
+
+- name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
   args:
   - 'apply'
