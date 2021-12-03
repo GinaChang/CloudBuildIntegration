@@ -56,12 +56,9 @@ steps:
           PROJECT=$$(gcloud config get-value core/project)
           REGION=$$(gcloud config get-value compute/region)
           
-          gcloud container clusters get-credentials "$${CLUSTER}" \
+          # gcloud container clusters get-credentials "$${CLUSTER}" \
             --project "$${PROJECT}" \
             --region "$${REGION}"  
-
-
-          
           
 
           sed -i 's|gcr.io/cloud-solutions-images/gceme:.*|gcr.io/$PROJECT_ID/gcme:${BRANCH_NAME}-${SHORT_SHA}|' ./kubernetes/deployments/dev/*.yaml
