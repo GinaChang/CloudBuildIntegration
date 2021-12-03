@@ -24,7 +24,7 @@ steps:
 #   args:
 #   - 'get'
 #   - 'ns'
-
+# test
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
   env:
