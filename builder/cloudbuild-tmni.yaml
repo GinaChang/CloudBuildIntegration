@@ -50,4 +50,4 @@ steps:
 # [END cloudbuild-delivery]
 options:
   workerPool:
-    'projects/$GOOGLE_CLOUD_PROJECT/locations/asia-east1/workerPools/cloud-build-private-pool'
+    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-private-pool'
