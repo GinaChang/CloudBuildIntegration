@@ -16,9 +16,6 @@ steps:
     PROJECT=$$(gcloud config get-value core/project)
     REGION=$$(gcloud config get-value compute/region)
     gcloud container clusters get-credentials "$${CLUSTER}" --region "$${REGION}" --project "$${PROJECT}"
-  options:
-    workerPool:
-      'projects/$GOOGLE_CLOUD_PROJECT/locations/asia-east1/workerPools/cloud-build-private-pool'
 
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
@@ -29,9 +26,6 @@ steps:
   - 'apply'
   - '-f'
   - 'kubernetes/deployments/dev/backend-dev.yaml'
-  options:
-    workerPool:
-      'projects/$GOOGLE_CLOUD_PROJECT/locations/asia-east1/workerPools/cloud-build-private-pool'
 
 # This step copies the applied manifest to the production branch
 # The COMMIT_SHA variable is automatically
@@ -54,3 +48,6 @@ steps:
 #     # Push the changes back to Cloud Source Repository
 #     git push origin production
 # [END cloudbuild-delivery]
+options:
+  workerPool:
+    'projects/$GOOGLE_CLOUD_PROJECT/locations/asia-east1/workerPools/cloud-build-private-pool'
