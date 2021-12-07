@@ -1,10 +1,20 @@
 # [START cloudbuild-delivery]
 steps:
 - name: "gcr.io/cloud-builders/kubectl"
+  id: Get Node
   args: ['get', 'nodes']
   env:
-  - 'CLOUDSDK_COMPUTE_REGION=asia-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
+  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+  args:
+  - 'apply'
+  - '-f'
+  - 'kubernetes/deployments/dev/backend-dev.yaml'
 options:
   workerPool:
     'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool'
