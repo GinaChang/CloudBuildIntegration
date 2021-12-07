@@ -1,4 +1,5 @@
 # [START cloudbuild-delivery]
+# add authorized-networks test1
 steps:
 # This step deploys the new version of our container image
 # in the hello-cloudbuild Kubernetes Engine cluster.
