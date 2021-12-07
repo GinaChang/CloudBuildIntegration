@@ -48,6 +48,6 @@ steps:
 #     # Push the changes back to Cloud Source Repository
 #     git push origin production
 # [END cloudbuild-delivery]
-options:
-  workerPool:
-    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-private-pool'
+# options:
+#   workerPool:
+#     'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-private-pool'
