@@ -1,31 +1,39 @@
 # [START cloudbuild-delivery]
-# add authorized-networks test3
 steps:
-# This step deploys the new version of our container image
-# in the hello-cloudbuild Kubernetes Engine cluster.
-- name: 'gcr.io/cloud-builders/gcloud'
-  id: get credentials
-  entrypoint: /bin/sh
+- name: "gcr.io/cloud-builders/kubectl"
+  args: ['get', 'nodes']
   env:
-  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
-  args:
-  - '-c'
-  - |
-    CLUSTER=$$(gcloud config get-value container/cluster)
-    PROJECT=$$(gcloud config get-value core/project)
-    REGION=$$(gcloud config get-value compute/region)
-    gcloud container clusters get-credentials "$${CLUSTER}" --region "$${REGION}" --project "$${PROJECT}"
+  - 'CLOUDSDK_COMPUTE_REGION=asia-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
+options:
+  workerPool:
+    'projects//locations/asia-east1/workerPools/cloud-build-pool'
+# steps:
+# # This step deploys the new version of our container image
+# # in the hello-cloudbuild Kubernetes Engine cluster.
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   id: get credentials
+#   entrypoint: /bin/sh
+#   env:
+#   - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+#   args:
+#   - '-c'
+#   - |
+#     CLUSTER=$$(gcloud config get-value container/cluster)
+#     PROJECT=$$(gcloud config get-value core/project)
+#     REGION=$$(gcloud config get-value compute/region)
+#     gcloud container clusters get-credentials "$${CLUSTER}" --region "$${REGION}" --project "$${PROJECT}"
 
-- name: 'gcr.io/cloud-builders/kubectl'
-  id: Deploy
-  env:
-  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
-  args:
-  - 'apply'
-  - '-f'
-  - 'kubernetes/deployments/dev/backend-dev.yaml'
+# - name: 'gcr.io/cloud-builders/kubectl'
+#   id: Deploy
+#   env:
+#   - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+#   args:
+#   - 'apply'
+#   - '-f'
+#   - 'kubernetes/deployments/dev/backend-dev.yaml'
 
 # This step copies the applied manifest to the production branch
 # The COMMIT_SHA variable is automatically
