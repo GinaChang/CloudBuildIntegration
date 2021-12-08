@@ -1,6 +1,7 @@
 # [START cloudbuild-delivery]
 steps:
 - name: "gcr.io/cloud-builders/kubectl"
+  entrypoint: /bin/sh
   id: Get IP
   args: ['ip', '-4', 'a']
   env:
