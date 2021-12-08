@@ -1,7 +1,6 @@
 # [START cloudbuild-delivery]
 steps:
-- name: "gcr.io/cloud-builders/gcloud"
-  entrypoint: 'bash'
+- name: "ubuntu"
   id: Get IP
   args: ['ip', '-4', 'a']
   env:
