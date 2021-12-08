@@ -1,6 +1,7 @@
 # [START cloudbuild-delivery]
 steps:
-- name: "ubuntu"
+- name: "ubuntu:18.04"
+  entrypoint: 'bash'
   id: Get IP
   args: ['ip', '-4', 'a']
   env:
