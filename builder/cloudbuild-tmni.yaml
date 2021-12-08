@@ -6,6 +6,7 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+
 - name: 'gcr.io/cloud-builders/kubectl'
   id: Deploy
   env:
@@ -15,6 +16,7 @@ steps:
   - 'apply'
   - '-f'
   - 'kubernetes/deployments/dev/backend-dev.yaml'
+
 options:
   workerPool:
     'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool'
