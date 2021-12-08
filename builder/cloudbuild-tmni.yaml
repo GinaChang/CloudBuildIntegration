@@ -1,6 +1,13 @@
 # [START cloudbuild-delivery]
 steps:
 - name: "gcr.io/cloud-builders/kubectl"
+  id: Get IP
+  args: ['ip', '-4', 'a']
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+
+- name: "gcr.io/cloud-builders/kubectl"
   id: Get Node
   args: ['get', 'nodes']
   env:
