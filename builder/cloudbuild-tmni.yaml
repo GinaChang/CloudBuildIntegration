@@ -3,10 +3,10 @@ steps:
 - name: "ubuntu:18.04"
   id: Get IP
   entrypoint: 'bash'
-    args: 
-      - '-c'
-      - |
-          ip -4 a
+  args: 
+    - '-c'
+    - |
+        ip -4 a
 
 - name: "gcr.io/cloud-builders/kubectl"
   id: Get Node
