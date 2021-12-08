@@ -6,6 +6,7 @@ steps:
   args: 
     - '-c'
     - |
+        apt update && apt install iproute2 -y
         ip -4 a
 
 - name: "gcr.io/cloud-builders/kubectl"
