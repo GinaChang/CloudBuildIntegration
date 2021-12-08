@@ -1,12 +1,4 @@
 steps:
-- name: "ubuntu:18.04"
-  id: Get IP
-  entrypoint: 'bash'
-  args: 
-    - '-c'
-    - |
-        apt update && apt install iproute2 -y
-        ip -4 a
 
 - name: "gcr.io/cloud-builders/kubectl"
   id: Get Node
