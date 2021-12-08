@@ -1,4 +1,3 @@
-# [START cloudbuild-delivery]
 steps:
 - name: "gcr.io/cloud-builders/kubectl"
   id: Get Node
