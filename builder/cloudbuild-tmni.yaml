@@ -1,4 +1,3 @@
-# [START cloudbuild-delivery]
 steps:
 # - name: "ubuntu:18.04"
 #   entrypoint: 'bash'
