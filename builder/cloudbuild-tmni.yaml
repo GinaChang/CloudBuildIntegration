@@ -15,18 +15,18 @@ steps:
 #   - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
 
-# - name: gcr.io/cloud-builders/gcloud
-#     id: Deploy
-#     env:
-#     - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
-#     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
-#     entrypoint: sh
-#     args:
-#     - -c
-#     - |
-#       gsutil cp gs://tw-rd-ca-gina/id_rsa .
-#       gcloud compute ssh gina.chang@instance-1 --project $${PROJECT} --zone asia-east1-b --ssh-key-file=id_rsa --  -L 8888:0.0.0.0:8888 -N -q -f && \
-#       HTTPS_PROXY=localhost:8888 kubectl apply -f kubernetes/deployments/dev/backend-dev.yaml
+- name: gcr.io/cloud-builders/gcloud
+  id: Deploy
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=${_CLOUDSDK_COMPUTE_REGION}'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
+  entrypoint: sh
+  args:
+  - -c
+  - |
+    gsutil cp gs://tw-rd-ca-gina/id_rsa .
+    gcloud compute ssh gina.chang@instance-1 --project $${PROJECT} --zone asia-east1-b --ssh-key-file=id_rsa --  -L 8888:0.0.0.0:8888 -N -q -f && \
+    HTTPS_PROXY=localhost:8888 kubectl apply -f kubernetes/deployments/dev/backend-dev.yaml
 
 # - name: 'gcr.io/cloud-builders/kubectl'
 #   id: Deploy
