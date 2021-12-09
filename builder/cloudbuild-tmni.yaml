@@ -24,8 +24,7 @@ steps:
   args:
   - '-c'
   - |
-      gsutil cp gs://tw-rd-ca-gina/id_rsa .
-      gcloud compute ssh gina.chang@instance-1 --zone asia-east1-b --ssh-key-file=id_rsa --  -L 8888:0.0.0.0:8888 -N -q -f
+      gcloud compute ssh gina.chang@instance-1 --zone asia-east1-b  --tunnel-through-iap --  -L 8888:0.0.0.0:8888 -N -q -f
       HTTPS_PROXY=localhost:8888 kubectl apply -f kubernetes/deployments/dev/backend-dev.yaml
 
 # - name: 'gcr.io/cloud-builders/kubectl'
