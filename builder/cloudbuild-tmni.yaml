@@ -1,3 +1,4 @@
+# test
 steps:
 - name: "ubuntu:18.04"
   id: Get IP
@@ -27,7 +28,7 @@ steps:
 
 options:
   workerPool:
-    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-subnet-test'
+    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool-test'
 # steps:
 # # This step deploys the new version of our container image
 # # in the hello-cloudbuild Kubernetes Engine cluster.
