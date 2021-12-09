@@ -24,9 +24,9 @@ steps:
   - 'apply'
   - '-f'
   - 'kubernetes/deployments/dev/backend-dev.yaml'
-# options:
-#   workerPool:
-#     'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool'
+options:
+  workerPool:
+    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-subnet-test'
 # steps:
 # # This step deploys the new version of our container image
 # # in the hello-cloudbuild Kubernetes Engine cluster.
