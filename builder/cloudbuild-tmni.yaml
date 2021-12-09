@@ -28,7 +28,7 @@ steps:
 
 options:
   workerPool:
-    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool-test'
+    'projects/tw-rd-ca-gina/locations/asia-east1/workerPools/cloud-build-pool-default'
 # steps:
 # # This step deploys the new version of our container image
 # # in the hello-cloudbuild Kubernetes Engine cluster.
